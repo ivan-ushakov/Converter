@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let router = Router()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let viewModel = ConverterViewModel(router: self.router, timerService: TimerService(), webService: WebService())
+        let viewModel = ConverterViewModel(timerService: TimerService(), webService: WebService())
         self.router.present(viewModel)
 
         return true

@@ -56,10 +56,7 @@ extension RateResponse {
             throw WebServiceError()
         }
 
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-
-        guard let dateString = object["date"] as? String, let date = formatter.date(from: dateString) else {
+        guard let dateString = object["date"] as? String, let date = Formatter.shared.date(from: dateString) else {
             throw WebServiceError()
         }
 
@@ -70,3 +67,19 @@ extension RateResponse {
         return RateResponse(base: base, date: date, rates: try Rate.transform(rateObject))
     }
 }
+
+private class Formatter {
+
+    static let shared = Formatter()
+
+    private let formatter = DateFormatter()
+
+    init() {
+        self.formatter.dateFormat = "yyyy-MM-dd"
+    }
+
+    func date(from: String) -> Date? {
+        return self.formatter.date(from: from)
+    }
+}
+

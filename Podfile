@@ -5,3 +5,8 @@ target 'Converter' do
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
 end
+
+target 'ConverterTests' do
+    pod 'RxSwift',    '~> 4.0'
+    pod 'RxCocoa',    '~> 4.0'
+end

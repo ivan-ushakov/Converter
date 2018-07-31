@@ -8,13 +8,8 @@
 
 import UIKit
 
-struct ErrorViewModel {
-    var message: String
-}
-
 protocol RouterType {
     func present(_ viewModel: ConverterViewModel)
-    func present(_ viewModel: ErrorViewModel)
 }
 
 class Router: RouterType {
@@ -35,14 +30,6 @@ class Router: RouterType {
 
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-    }
-
-    func present(_ viewModel: ErrorViewModel) {
-        if let root = window.rootViewController {
-            let controller = UIAlertController(title: "Error", message: viewModel.message, preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            root.present(controller, animated: true, completion: nil)
-        }
     }
 }
 
