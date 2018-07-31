@@ -11,15 +11,11 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private let router = Router()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.backgroundColor = UIColor.clear
-
-        let navigationController = UINavigationController(rootViewController: ConverterViewController())
-        navigationController.navigationBar.isHidden = true
-
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
+        let viewModel = ConverterViewModel(router: self.router, timerService: TimerService(), webService: WebService())
+        self.router.present(viewModel)
 
         return true
     }
