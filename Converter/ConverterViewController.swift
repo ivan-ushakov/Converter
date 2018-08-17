@@ -219,22 +219,14 @@ class ConverterViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     private func makeEditable(_ index: Int) {
-        let block: () -> (Void) = {
-            if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CurrencyCell {
+        let indexPath = IndexPath(row: index, section: 0)
+
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+
+        DispatchQueue.main.async {
+            if let cell = self.tableView.cellForRow(at: indexPath) as? CurrencyCell {
                 cell.makeFirstResponder()
             }
-        }
-
-        if (index != 0) {
-            self.tableView.performBatchUpdates({
-                let from = IndexPath(row: index, section: 0)
-                let to = IndexPath(row: 0, section: 0)
-                self.tableView.moveRow(at: from, to: to)
-            }, completion: { _ in
-                block()
-            })
-        } else {
-            block()
         }
     }
 }
